@@ -10,7 +10,7 @@ load_dotenv()
 
 
 class OpenAiLLM(BaseLLM):
-    def __init__(self, max_tokens=100, buffer_size=40, streaming_model="gpt-3.5-turbo-16k",
+    def __init__(self, max_tokens=16000, buffer_size=40, streaming_model="gpt-3.5-turbo-16k",
                  classification_model="gpt-3.5-turbo-1106", temperature= 0.1, **kwargs):
         super().__init__(max_tokens, buffer_size)
         self.model = streaming_model
@@ -41,6 +41,7 @@ class OpenAiLLM(BaseLLM):
                 llm_key = os.getenv('OPENAI_API_KEY')
             else:
                 llm_key = kwargs['llm_key']
+            logger.info("KEYYY", llm_key)
             self.async_client = AsyncOpenAI(api_key=llm_key)
         
         if "top_p" in kwargs:
