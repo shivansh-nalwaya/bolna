@@ -41,7 +41,7 @@ class OpenAiLLM(BaseLLM):
                 llm_key = os.getenv('OPENAI_API_KEY')
             else:
                 llm_key = kwargs['llm_key']
-            logger.info("KEYYY", llm_key)
+            logger.info(f"KEYYY: {llm_key}")
             self.async_client = AsyncOpenAI(api_key=llm_key)
         
         if "top_p" in kwargs:
